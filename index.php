@@ -24,7 +24,7 @@
         <title>Human Benchmark</title>
 
         <link rel="stylesheet" type="text/css" href="./css/style.css" />
-        <link rel="stylesheet" type="text/css" href="./css/nav.css" />
+        <link rel="stylesheet" href="./css/TypingSpeed.css"> 
     </head>
 
     <body>
