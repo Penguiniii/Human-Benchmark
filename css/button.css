@@ -1,0 +1,13 @@
+body {
+    font-family: Verdana, Geneva, sans-serif;
+    margin: 0;
+}
+
+#box {
+    width: 100px;
+    height: 100px;
+    background-color: blue;
+    display: none;
+    position: relative; 
+}
+
