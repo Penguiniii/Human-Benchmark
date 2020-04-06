@@ -15,8 +15,16 @@ function getRandomColor()
 let bestTime = 0;
 let clickedTime, createdTime;
 let recordedTimes = [];
+
 let boxElement = document.getElementById("box");
 let progressText = document.getElementById("progress");
+
+let resultsWindow = document.getElementById("resultsWindow");
+let bestTimeText = document.getElementById("bestTimeText");
+let usernameTextfield = document.getElementById("usernameTextfield");
+let submitButton = document.getElementById("submitButton");
+
+resultsWindow.style.display = "none";
 
 document.getElementById("startButton").onclick = function()
 {
@@ -47,7 +55,7 @@ function makeBox()
         createdTime = Date.now();
 
         boxElement.onclick = function(){
-            let timeTaken = (Date.now() - createdTime) / 1000;
+            let timeTaken = (Date.now() - createdTime);
             console.log("Box has been clicked! It was clicked in " + timeTaken + "ms.");
             recordResult(timeTaken);
             boxElement.style.display = "none";
@@ -74,8 +82,21 @@ function recordResult(result)
     }
     else 
     {
-        // Submit to database.
-        console.log('You have player your five games. Leave.')
+        showResults(bestTime);
     }
+}
+
+function showResults(best)
+{
+    resultsWindow.style.display = "block";
+    bestTimeText.textContent = 'Your best time was ' + (best / 1000) + 's';
+
+    submitButton.onclick = function(){
+        console.log("Button clicked!");
+        if(usernameTextfield.value !== "") {
+            console.log("Text detected!");
+            window.location = "?page=reactionResult&username="+usernameTextfield.value+"&timeTaken="+best;
+        }
+    };
 }
 

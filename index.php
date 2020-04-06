@@ -3,15 +3,39 @@
 
     $page = "error";
 
-    if(isset($_GET["page"]) AND file_exists("pages/".$_GET["page"].".php")) {
-
+    if(isset($_GET["page"]) AND file_exists("pages/".$_GET["page"].".php")) 
+    {
         $page = $_GET["page"];
-
-    } elseif(!isset($_GET["page"])) {
-
+    } 
+    elseif(!isset($_GET["page"])) 
+    {
         $page = "home";
-
     }
+
+    $dbConnection = new mysqli('localhost', 'root', '');
+
+    if($dbConnection->connect_error)
+    {
+        die('Connection to database failed.');
+    }
+
+    $dbConnection->query('CREATE DATABASE humanbenchmark');
+
+    $dbConnection->select_db('humanbenchmark');
+
+    $dbConnection->query('
+        CREATE TABLE IF NOT EXISTS reactions (
+        id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+        username VARCHAR(30) NOT NULL,
+        timeTaken int(6) NOT NULL
+    )');
+
+    $dbConnection->query('
+        CREATE TABLE IF NOT EXISTS typingspeed (
+        id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+        username VARCHAR(30) NOT NULL,
+        timeTaken int(6) NOT NULL
+    )');
 
 ?>
 
@@ -41,3 +65,8 @@
 
     </body>
 </html>
+
+<?php
+    $dbConnection->close();
+    $dbConnection = null;
+?>

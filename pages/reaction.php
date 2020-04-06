@@ -4,6 +4,12 @@
 <div class="boxContainer">
     <div id="startButton">Start Test</div>
     <div id="box"></div>
+
+    <div id="resultsWindow">
+    	<span id="bestTimeText"></span><br>
+    	<input id="usernameTextfield" type="text" name="username">
+    	<div id="submitButton">Submit</div>
+    </div>
 </div>
 
 <span id="progress"></span>
