@@ -42,6 +42,7 @@ function makeBox()
         boxElement.onclick = function(){
             recordResult();
         };
+    
         
     }, time);
 }
@@ -59,16 +60,16 @@ function recordResult()
         bestTime = timeTaken;
         progressText.textContent = "Best Time: " + bestTime + "ms";
     }
-
-}
-
-timeTaken = recodedTimes[1,2,3,4,5,6];
-
-if(recordedTimes.length === 5) {
-    recordResult();
-
-} else {
-
-    makeBox();
-}
     
+    var timeTaken = new recodedTimes[1,2,3,4,5];
+
+    if(recordedTimes.length === 5) {
+        recordResult();
+    
+    } else {
+    
+        makeBox();
+    }
+
+}
+
