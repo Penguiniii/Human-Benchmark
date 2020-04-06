@@ -70,12 +70,13 @@ function recordResult(result)
 
     if(recordedTimes.length < 5)
     {
-        makeBox();
+        setTimeout(makebox()
+        , time);
     }
     else 
     {
         // Submit to database.
-        console.log('You have player your five games. Leave.')
+        console.log('You have played your five games. Leave.')
     }
 }
 
