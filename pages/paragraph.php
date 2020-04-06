@@ -2,10 +2,8 @@
 	<div class="heading"> 
 	Speed Typing Test
 	</div> 
-	<img src="./images/keyboard1.jpg" alt="images" class="keyboard">
 	
 	<div class="header"> 
-	
 <!----------------------CC, WC, Accuracy and Errors work together----------------------------->
 <!--Character Count-->		
 	<div class="cc"> 

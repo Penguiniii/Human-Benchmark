@@ -79,5 +79,3 @@ function recordResult(result)
     }
 }
 
-makeBox();
-
