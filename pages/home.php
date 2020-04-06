@@ -9,7 +9,7 @@
 
 	<?php
 	
-		$result = $dbConnection->query("SELECT username, timeTaken FROM reactions ORDER BY timeTaken DESC");
+		$result = $dbConnection->query("SELECT username, timeTaken FROM reactions ORDER BY timeTaken ASC");
 		$rank = 1;
 
 		if($result->num_rows > 0) 
@@ -19,9 +19,10 @@
 				echo "<tr><td>{$rank}</td>
 					  <td>{$row['username']}</td>
 					  <td>{$row['timeTaken']}</td>";
+				$rank++;
 			}
 
-			$rank++;
+
 		}
 		else
 		{
