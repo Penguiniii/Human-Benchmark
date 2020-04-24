@@ -1,11 +1,14 @@
+console.log("Speed typer found");
+
 //timer for 150 seconds
-let TIME_LIMIT = 150; 
+let TIME_LIMIT = 5; 
 
 //paragraphs to type out
 let quotes_array = [ 
 "The European continent is located completely in the northern hemisphere and mainly in the eastern hemisphere. Europe borders onto the Arctic Ocean in the North, the Atlantic Ocean in the west and the Mediterranean Sea in the South.",  
 "There are 50 countries in Europe with a total of more than 742 million people living on the continent. Of these 50 countries only 44 have their capital city on the European continent!", 
-"Largest country: The European part of Russia covers more area than any other country."
+"Largest country: The European part of Russia covers more area than any other country.",
+"Your time is limited, so don't waste it living someone else's life. Don't be trapped by dogma – which is living with the results of other people's thinking."
 ]; 
 
 //required elements being selected by querySelector- returns the first element that matches a specified CSS selector in the document
@@ -14,16 +17,17 @@ let accuracy_text = document.querySelector(".current_accuracy");
 let error_text = document.querySelector(".current_errors"); 
 let cc_text = document.querySelector(".current_cc"); 
 let wc_text = document.querySelector(".current_wpm"); 
+let wordscounted = document.querySelector(".current_countWords");
 let quote_text = document.querySelector(".quote");
+
+
  
 let whiteArea = document.querySelector(".whiteArea"); 
-
-let restart_btn = document.querySelector(".restart_btn"); 
 
 let cc_group = document.querySelector(".cc"); 
 let wc_group = document.querySelector(".wc"); 
 let error_group = document.querySelector(".errors"); 
-let accuracy_group = document.querySelector(".accuracy"); 
+let accuracy_group = document.querySelector(".accuracy");
 
 
 let timeLeft = TIME_LIMIT; 
@@ -35,6 +39,17 @@ let characterTyped = 0;
 let current_quote = ""; 
 let quoteNo = 0; 
 let timer = null; 
+
+//Results window
+
+let submit = document.getElementById("submit");
+let countedWords = document.getElementById("words");
+let paragraph = document.getElementById("paragraph");
+let countederrors = document.getElementById("errors");
+let usernameTextfield2 = document.getElementById("usernameTextfield2");
+
+paragraph.style.display = "none";
+
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -56,6 +71,14 @@ if (quoteNo < quotes_array.length - 1)
 else
 	quoteNo = 0; 
 } 
+
+/*Create the word count*/
+
+function countWords() {
+
+
+}
+
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -138,13 +161,11 @@ accuracy = 0;
 characterTyped = 0; 
 quoteNo = 0; 
 whiteArea.disabled = false; 
-
 whiteArea.value = ""; 
 quote_text.textContent = 'Click on the area below to start the game.'; 
 accuracy_text.textContent = 100; 
 timer_text.textContent = timeLeft + 's'; 
-error_text.textContent = 0; 
-restart_btn.style.display = "none"; 
+error_text.textContent = 0;  
 cc_group.style.display = "none"; 
 wc_group.style.display = "none"; 
 } 
@@ -168,8 +189,10 @@ if (timeLeft > 0) {
 else { 
 	// finish the game 
 	finishGame(); 
-} 
-} 
+
+}
+}
+
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -183,10 +206,10 @@ clearInterval(timer);
 whiteArea.disabled = true; 
 
 // show finishing text 
-quote_text.textContent = "Click on restart to try again."; 
+quote_text.textContent = "Click Submit to upload your score."; 
 
-// display restart button 
-restart_btn.style.display = "block"; 
+showResults2(errors);
+console.log("game has finished ~> " + errors + "errors");
 
 // calculate cc and wc 
 cc = Math.round(((characterTyped / timeElapsed) * 150)); 
@@ -200,6 +223,26 @@ cc_text.textContent = cc;
 // display the wc and cc 
 wc_group.style.display = "block"; 
 cc_group.style.display = "block"; 
+
 } 
 
+
 //////////////////////////////////////////////////////////////////////////////////////////////////////
+
+function showResults2(errors)
+{
+	paragraph.style.display = "block";
+	/*Make the wordcount and error amount apear here*/
+
+    submit.onclick = function(){
+        console.log("Button clicked!");
+        if(usernameTextfield2.value !== "") {
+            console.log("Text detected!");
+            window.location = "?page=paragraphResult&username="+usernameTextfield2.value+ "&Errors"+errors;
+        }
+	};
+}
+
+
+
+

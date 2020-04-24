@@ -1,4 +1,4 @@
-console.log("js found, Starting application");
+console.log("Reaction time found");
 
 function getRandomColor() 
 {
@@ -13,15 +13,15 @@ function getRandomColor()
 } 
 
 let bestTime = 0;
-let clickedTime, createdTime;
 let recordedTimes = [];
+let clickedTime, createdTime;
 
-let boxElement = document.getElementById("box");
 let progressText = document.getElementById("progress");
+let boxElement = document.getElementById("box");
 
+let usernameTextfield = document.getElementById("usernameTextfield");
 let resultsWindow = document.getElementById("resultsWindow");
 let bestTimeText = document.getElementById("bestTimeText");
-let usernameTextfield = document.getElementById("usernameTextfield");
 let submitButton = document.getElementById("submitButton");
 
 resultsWindow.style.display = "none";
