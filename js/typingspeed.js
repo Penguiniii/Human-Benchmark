@@ -15,19 +15,14 @@ let quotes_array = [
 let timer_text = document.querySelector(".current_time"); 
 let accuracy_text = document.querySelector(".current_accuracy");
 let error_text = document.querySelector(".current_errors"); 
-let cc_text = document.querySelector(".current_cc"); 
-let wc_text = document.querySelector(".current_wpm"); 
-let wordscounted = document.querySelector(".current_countWords");
 let quote_text = document.querySelector(".quote");
-
-
  
 let whiteArea = document.querySelector(".whiteArea"); 
 
-let cc_group = document.querySelector(".cc"); 
-let wc_group = document.querySelector(".wc"); 
+
 let error_group = document.querySelector(".errors"); 
 let accuracy_group = document.querySelector(".accuracy");
+let textarea = document.getElementById("textarea");
 
 
 let timeLeft = TIME_LIMIT; 
@@ -43,7 +38,6 @@ let timer = null;
 //Results window
 
 let submit = document.getElementById("submit");
-let countedWords = document.getElementById("words");
 let paragraph = document.getElementById("paragraph");
 let countederrors = document.getElementById("errors");
 let usernameTextfield2 = document.getElementById("usernameTextfield2");
@@ -72,16 +66,8 @@ else
 	quoteNo = 0; 
 } 
 
-/*Create the word count*/
 
-function countWords() {
-
-
-}
-
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-
+//////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 function processCurrentText() { 
@@ -117,6 +103,7 @@ quoteSpanArray.forEach((char, index) => {
 	// increment number of errors 
 	errors++; 
 	} 
+	
 }); 
 
 // display the number of errors 
@@ -166,8 +153,7 @@ quote_text.textContent = 'Click on the area below to start the game.';
 accuracy_text.textContent = 100; 
 timer_text.textContent = timeLeft + 's'; 
 error_text.textContent = 0;  
-cc_group.style.display = "none"; 
-wc_group.style.display = "none"; 
+
 } 
 
 
@@ -193,7 +179,22 @@ else {
 }
 }
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////
 
+	$(document).ready(function() {
+	
+		$("#word_count").on('keyup', function() {
+			
+			var words = this.value.match(/\S+/g).length;
+			if (words > 800) {
+				var trimmed = $(this).val().split(/\s+/, 800).join(" ");
+				$(this).val(trimmed + " ");
+			}
+			else {
+				$('#display_count').text(words);
+			}
+		});
+	 }); 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -208,37 +209,25 @@ whiteArea.disabled = true;
 // show finishing text 
 quote_text.textContent = "Click Submit to upload your score."; 
 
-showResults2(errors);
-console.log("game has finished ~> " + errors + "errors");
+showResults2();
 
-// calculate cc and wc 
-cc = Math.round(((characterTyped / timeElapsed) * 150)); 
-wc = Math.round((((characterTyped / 5) / timeElapsed) * 150)); 
-
-// update wc and cc text 
-wc_text.textContent = wc;
-cc_text.textContent = cc; 
- 
-
-// display the wc and cc 
-wc_group.style.display = "block"; 
-cc_group.style.display = "block"; 
-
+console.log("game has finished ~> " + errors + " errors");
 } 
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
-function showResults2(errors)
-{
+function showResults2() {
+
 	paragraph.style.display = "block";
-	/*Make the wordcount and error amount apear here*/
+	wordscounted.textContent = 'Words typed ' + display_count;
+	errors_counted.textContent = 'Errors made ' + (errors);
 
     submit.onclick = function(){
         console.log("Button clicked!");
         if(usernameTextfield2.value !== "") {
             console.log("Text detected!");
-            window.location = "?page=paragraphResult&username="+usernameTextfield2.value+ "&Errors"+errors;
+            window.location = "?page=paragraphResult&username="+usernameTextfield2.value+ "&Errors" + errors + "&word_count";
         }
 	};
 }

@@ -34,8 +34,8 @@
         CREATE TABLE IF NOT EXISTS typingspeed (
         id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
         username VARCHAR(30) NOT NULL,
-        WordCount int(6) NOT NULL,
-        Errors int(6) NOT NULL
+        word_count int(100) NOT NULL,
+        errors int(100) NOT NULL
     )');
 
 ?>
@@ -49,6 +49,7 @@
         <title>Human Benchmark</title>
 
         <link href="./js/typingspeed.js" />
+        <script src="./js/JQuery.js"> </script>
         <link rel="stylesheet" type="text/css" href="./css/style.css" />
         <link rel="stylesheet" href="./css/TypingSpeed.css"> 
     </head>
