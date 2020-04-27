@@ -33,13 +33,16 @@ let accuracy = 0;
 let characterTyped = 0; 
 let current_quote = ""; 
 let quoteNo = 0; 
-let timer = null; 
+let timer = null;
+let recordedTimes2 = [];
+
 
 //Results window
 
 let submit = document.getElementById("submit");
 let paragraph = document.getElementById("paragraph");
 let countederrors = document.getElementById("errors");
+let words_counted = document.getElementById("words_counted");
 let usernameTextfield2 = document.getElementById("usernameTextfield2");
 
 paragraph.style.display = "none";
@@ -181,20 +184,29 @@ else {
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
-	$(document).ready(function() {
+counter = function() {
+
+	var value = $('#word_count').val();
+
+
+    if (value.length == 0) {
+        $('#display_count').html(0);
+
+        return;
+    }
+
+    var regex = /\s+/gi;
+    var wordCount = value.trim().replace(regex, ' ').split(' ').length;
 	
-		$("#word_count").on('keyup', function() {
-			
-			var words = this.value.match(/\S+/g).length;
-			if (words > 800) {
-				var trimmed = $(this).val().split(/\s+/, 800).join(" ");
-				$(this).val(trimmed + " ");
-			}
-			else {
-				$('#display_count').text(words);
-			}
-		});
-	 }); 
+
+	$('#display_count').html(wordCount);
+	$('#words_counted').html(wordCount);
+};
+
+$(document).ready(function() {
+    $('#word_count').keyup(counter);
+
+});
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -209,25 +221,48 @@ whiteArea.disabled = true;
 // show finishing text 
 quote_text.textContent = "Click Submit to upload your score."; 
 
-showResults2();
-
+recordResult2();
+console.log('game has finished ~> ' );
 console.log("game has finished ~> " + errors + " errors");
 } 
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+
+function recordResult2(result2) {
+	
+	recordedTimes2.push(result2);
+
+
+	if(result2 < errors || errors === 0) {
+		
+	result2 = errors;
+	}
+    console.log('Current results (' + recordedTimes2.length + '): ' + recordedTimes2);
+
+
+
+	if(TIME_LIMIT.length < 0) {
+
+		startGame();
+
+	} else {
+
+		showResults2(errors);
+	}
+}
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
-function showResults2() {
+function showResults2(most, best) {
 
 	paragraph.style.display = "block";
-	wordscounted.textContent = 'Words typed ' + display_count;
-	errors_counted.textContent = 'Errors made ' + (errors);
-
+	errors_counted.textContent = 'Errors made ' + most;
+	
     submit.onclick = function(){
         console.log("Button clicked!");
         if(usernameTextfield2.value !== "") {
             console.log("Text detected!");
-            window.location = "?page=paragraphResult&username="+usernameTextfield2.value+ "&Errors" + errors + "&word_count";
+            window.location = "?page=paragraphResult&username="+usernameTextfield2.value + "&errors=" + most;
         }
 	};
 }

@@ -64,6 +64,8 @@ function makeBox()
     }, time);
 }
 
+/*database function*/
+
 function recordResult(result)
 {
     recordedTimes.push(result);

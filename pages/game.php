@@ -40,8 +40,9 @@
 </div> 
 
 <div id="paragraph">
-		<span id="wordscounted">0</span><br>
-		<span id="errors_counted">0</span><br>
+		<lable>Words typed</lable>
+		<span id="words_counted"></span><br>
+		<span id="errors_counted"></span><br>
     	<input id="usernameTextfield2" type="text" name="username"> <br>
     	<button id="submit">Submit</button>
 	</div>

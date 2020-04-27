@@ -4,23 +4,21 @@
 	<tr>
 		<td>Rank</td>
 		<td>User</td>
-		<td>Words</td>
 		<td>Errors</td>
 	</tr>
 
 	<?php
 	
-		$result = $dbConnection->query("SELECT username, WordCount, Errors FROM typingspeed ORDER BY WordCount, Errors ASC");
+		$result2 = $dbConnection->query("SELECT username, errors FROM typingspeed ORDER BY  errors ASC");
 		$rank = 1;
 
-		if(!empty($result) && $result->num_rows > 0)
+		if(!empty($result2) && $result2->num_rows > 0)
 		{
-			while($row = $result->fetch_assoc()) 
+			while($row = $result2->fetch_assoc()) 
 			{
 				echo "<tr><td>{$rank}</td>
 					  <td>{$row['username']}</td>
-					  <td>{$row['WordCount']}</td>
-					  <td>{$row['Errors']}</td>";
+					  <td>{$row['errors']}</td>";
 				$rank++;
 			}
 
