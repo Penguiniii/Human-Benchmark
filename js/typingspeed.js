@@ -1,14 +1,11 @@
 console.log("Speed typer found");
 
 //timer for 150 seconds
-let TIME_LIMIT = 5; 
+let TIME_LIMIT = 150; 
 
 //paragraphs to type out
 let quotes_array = [ 
-"The European continent is located completely in the northern hemisphere and mainly in the eastern hemisphere. Europe borders onto the Arctic Ocean in the North, the Atlantic Ocean in the west and the Mediterranean Sea in the South.",  
-"There are 50 countries in Europe with a total of more than 742 million people living on the continent. Of these 50 countries only 44 have their capital city on the European continent!", 
-"Largest country: The European part of Russia covers more area than any other country.",
-"Your time is limited, so don't waste it living someone else's life. Don't be trapped by dogma – which is living with the results of other people's thinking."
+"The European continent is located completely in the northern hemisphere and mainly in the eastern hemisphere. Europe borders onto the Arctic Ocean in the North, the Atlantic Ocean in the west and the Mediterranean Sea in the South. There are 50 countries in Europe with a total of more than 742 million people living on the continent. Of these 50 countries only 44 have their capital city on the European continent! Largest country: The European part of Russia covers more area than any other country. Your time is limited, so don't waste it living someone else's life. Don't be trapped by dogma – which is living with the results of other people's thinking."
 ]; 
 
 //required elements being selected by querySelector- returns the first element that matches a specified CSS selector in the document

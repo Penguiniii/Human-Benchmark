@@ -1,6 +1,7 @@
 <nav>
     <ul>
         <li><a href="?page=home">Home</a></li>
-        <li><a href="?page=game">Human Benchmarks</a></li>
+        <li><a href="?page=paragraph">Typing Speed</a></li>
+        <li><a href="?page=reactionTime">Reaction Timer</a></li>
     </ul>
 </nav>
